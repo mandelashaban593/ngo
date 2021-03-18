@@ -1,5 +1,5 @@
 <?php
-	include("./includes/connection.php");
+	include("includes/connection.php");
 	
 	//for creating unique id with database checked
 	$f = 0;
@@ -15,19 +15,22 @@
 		}
 	}
 	
-	$user_id = $id;
-	$name = $_POST["donor_name"];
-	$email = $_POST["donor_email"];
-	$address = $_POST["donor_address"];
-	$city = $_POST["donor_city"];
-	$category = $_POST["cat"];
-	$date = date("Y-m-d");
-	$item = $_POST['items'];
-	$discription = $_POST["donor_discription"];
-	$pickup = $_POST["pickup"];
+echo 	$user_id = $id ; echo "<br/>";
+echo	$name = $_POST["donor_name"]; echo "<br/>";
+echo	$email = $_POST["donor_email"]; echo "<br/>";
+echo	$address = $_POST["donor_address"]; echo "<br/>";
+echo	$city = $_POST["donor_city"]; echo "<br/>";
+echo	$category = $_POST["cat"]; echo "<br/>";
+echo	$item = $_POST['items'];  echo "<br/>";
+echo	$discription = $_POST["donor_discription"];  echo "<br/>";
+echo	$pickup = $_POST["pickup"];  echo "<br/>";
 echo $category."<br>";
-	$sql = "INSERT INTO donation(donate_id,donar_name,donar_email,city_id,address,category_id,date,items,discription,pickup) VALUES('".$user_id."','".$name."','".$email."',".$city.",'".$address."','".$category."','".$date."',".$item.",'".$discription."','".$pickup."')";
-	$q=mysqli_query($con,$sql);
+	$sql = "INSERT INTO donation(donate_id,donar_name,donar_email,city_id,address,category_id,date,items,discription,pickup) VALUES('".$user_id."','".$name."','".$email."','".$city."','".$address."','".$category."','".$date."','".$item."','".$discription."','".$pickup."')";
+
+/*
+donate_id,user_id, donar_name, donar_email, city_id	,address, category_id,date, discription	,pickup	,receive_date, items	*/
+
+	$q=mysqli_query($con,$sql) or die(mysqli_error($con));
 	if($q == 1){
 		header("location:./donate.php");
 	}
@@ -36,3 +39,4 @@ echo $category."<br>";
 	}
 	mysqli_close($con);
 ?>
+

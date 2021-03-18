@@ -24,6 +24,8 @@
 	$extension = strchr($file_name,".");
 	if(move_uploaded_file($tmp_file,"../gallery_uploads/$id$extension")){
 		$img = "./gallery_uploads/$id$extension";
+		chmod($img);
+
 	}
 	else{
 		$img = "";

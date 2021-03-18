@@ -1,4 +1,8 @@
 <?php	session_start();	?>
+<?php
+	include("./includes/session_check.php");
+	include("includes/connection.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,22 +47,55 @@
 					<p>
 					</p>
 				</div>
-				<img src="" height="250px" width="500px">
+				
+						<?php
+					$sql = "SELECT * FROM media_gallery ORDER BY view DESC limit 1";
+					$result = mysqli_query($con,$sql);
+					$count=1;
+					while($rs = mysqli_fetch_array($result)){
+						if($count==1){
+						?>
+						<a> 
+
+							
+
+							<div style="height:300px">
+								<span><?php echo $rs['caption']; ?></span>
+								<img style="width:800px;height:300px;" src="<?php echo  substr($rs['image'], 2);?>">
+							</div>
+						</a>
+						<?php
+						}
+						$count++;
+					}
+				?>
+			
 			</div>
 			<div class="body">
-				<div>
-					<h2></h2>
-				</div>
-				<div>
-					<h2></h2>
-					<p>
-					</p>
-				</div>
-				<div>
-					<h2></h2>
-					<p>
-					</p>
-				</div>
+				 
+					
+						<?php
+					$sql = "SELECT * FROM media_gallery ORDER BY view DESC";
+					$result = mysqli_query($con,$sql);
+					$count=1;
+					while($rs = mysqli_fetch_array($result)){
+						if($count<=4){
+						?>
+						<a> 
+
+							
+
+							<div>
+								<span><?php echo $rs['caption']; ?></span>
+								<img src="<?php echo  substr($rs['image'], 2);?>">
+							</div>
+						</a>
+						<?php
+						}
+						$count++;
+					}
+				?>
+
 			</div>
 			<div class="footer">
 				<p>

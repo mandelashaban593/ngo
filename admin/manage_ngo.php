@@ -69,7 +69,7 @@ include("./includes/connection.php");?>
 						?>
 						<a>
 							<div>
-								<span><?php echo $count.") ".$rs['ngo_name']; ?></span>
+								<span><?php echo $count.") ".$rs['nago_name']; ?></span>
 							</div>
 						</a>
 						<?php

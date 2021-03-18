@@ -1,5 +1,5 @@
 <?php
-	include("./includes/connection.php");
+	include("includes/connection.php");
 	$state = $_GET['state'];
 	$sql = "SELECT * FROM city WHERE state_id='".$state."'";
 	$result = mysqli_query($con,$sql);

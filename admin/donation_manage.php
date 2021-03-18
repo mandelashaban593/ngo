@@ -22,7 +22,7 @@
 				<li><a href="upload_media.php">Upload Media</a></li>
 				<li><a href="news.php">News</a></li>
 				<li><a href="events.php">Events</a></li>
-				<li><a href="ngo_activities">NGO Activities</a></li>
+				<li><a href="ngo_activities.php">NGO Activities</a></li>
 				<li class="log_btn"><a href="./logout.php">Logout</a></li>
 			</ul>
 		</div>
@@ -75,14 +75,14 @@
 						<label>Items</label>
 							<input type="hidden" value="<?php echo $_GET['cat']; ?>" name="cat">
 							<input type="number" name="donations">
-						<label>Select NGo</label>
-							<select name="ngo_id">
+						<label>Select Purpose</label>
+							<select name="ngo_id" style="width:200px">
 							<?php
 								$sql = "SELECT * FROM ngo_data";
 								$result = mysqli_query($con,$sql);
 								while($rs = mysqli_fetch_array($result)){
 									?>
-									<option value="<?php echo $rs['ngo_id'];?>"><?php echo 	$rs['ngo_name'];?></option>
+									<option value="<?php echo $rs['ngo_id'];?>"><?php echo 	$rs['nago_name'];?></option>
 									<?php
 								}
 							?>

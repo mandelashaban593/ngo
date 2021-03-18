@@ -1,4 +1,7 @@
 <?php	session_start();	?>
+<?php
+	include("includes/connection.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,27 +41,118 @@
 	<div id="body">
 		<div id="gallery">
 			<div class="header">
-				<div>
-					<h2></h2>
-					<p>
-					</p>
+				<div class="container row">
+
+					
+				
+						<?php
+
+			$total_pages_sql = "SELECT DISTINCT event_id,event_name,	event_description, date, time, address, city_id, duration, image FROM event limit 1";
+			$result = mysqli_query($con,$total_pages_sql)   or die(mysqli_error($con));
+			$rows = mysqli_fetch_array($result)  or die(mysqli_error($con));
+				mysqli_data_seek($result, 0);
+				while($item = mysqli_fetch_array($result)) {
+				
+			    // get the items in the specific chunk
+			    echo "<div class='row container' style='width:1400px'>";
+			   
+			        // you'd find your data elements in $item 
+
+			         echo "
+					   <div class='card' style='width: 15rem;'>
+					  <div class='card-body'>
+					    <h5 class='card-title'>".$item['event_name']."</h5>
+					    <h6 class='card-subtitle mb-2 text-muted'>".$item['address']."</h6>
+					    <p class='card-text'>".$item['event_description']."</p>
+					    <p class='card-text'>".$item['date']."</p>
+					    <p class='card-text'>".$item['time']."</p>
+					    <p class='card-text'>".$item['duration']."</p>
+					       <p class='card-text'>".$item['address']."</p>
+					     
+                      ";				
+
+			    ?>
+			  <p class='card-text'> <img style="width:300px;height: 90px" src="<?php echo  substr($item['image'], 2);?>"></p>
+			    <?php
+
+			    echo "<a href='#' class='card-link'>Event</a>
+					  </div>
+					</div>";
+
+			    // you'd close the row off here
+				}
+
+
+
+
+				?>
+					<!--  -->
+
+
+
 				</div>
 				<img src="" height="250px" width="500px">
 			</div>
-			<div class="body">
-				<div>
-					<h2></h2>
-				</div>
-				<div>
-					<h2></h2>
-					<p>
-					</p>
-				</div>
-				<div>
-					<h2></h2>
-					<p>
-					</p>
-				</div>
+			<div class="body container" style="width:900px">
+
+				<?php
+
+			$total_pages_sql = "SELECT DISTINCT event_id,event_name,	event_description, date, time, address, city_id, duration, image FROM event";
+			$result = mysqli_query($con,$total_pages_sql)   or die(mysqli_error($con));
+			$rows = mysqli_fetch_array($result)  or die(mysqli_error($con));
+				mysqli_data_seek($result, 0);
+				while($rows = mysqli_fetch_array($result)) {
+				    $data[] = $rows;
+				}
+
+				$chunked = array_chunk($data, 3);
+
+
+							// start the loop of chunks
+			foreach($chunked as $chunk) {
+			    // you'd open the row here
+			    // get the items in the specific chunk
+			    echo "<div class='row container' style='width:1100px'>";
+			    foreach($chunk as $item) {
+			        // you'd find your data elements in $item 
+
+			         echo "
+					   <div class='card' style='width: 15rem;'>
+					  <div class='card-body'>
+					    <h5 class='card-title'>".$item['event_name']."</h5>
+					    <h6 class='card-subtitle mb-2 text-muted'>".$item['address']."</h6>
+					    <p class='card-text'>".$item['event_description']."</p>
+					    <p class='card-text'>".$item['date']."</p>
+					    <p class='card-text'>".$item['time']."</p>
+					    <p class='card-text'>".$item['duration']."</p>
+					      <p class='card-text'>".$item['address']."</p>
+					     
+                      ";				
+
+			    ?>
+			   <p class='card-text'> <img style="width:320px;height: 90px" src="<?php echo  substr($item['image'], 2);?>"></p>
+			    <?php
+
+			    echo "<a href='#' class='card-link'>Event</a>
+					  </div>
+					</div>";
+
+						
+
+
+			    }
+
+			    echo "</div>";
+
+			    // you'd close the row off here
+			}
+
+
+
+
+				?>
+					<!--  -->
+
 			</div>
 			<div class="footer">
 				<p>
