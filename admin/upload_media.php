@@ -43,7 +43,7 @@
 					$result = mysqli_query($con,$sql);
 					$count=1;
 					while($rs = mysqli_fetch_array($result)){
-						if($count<=4){
+						if($count<=90){
 						?>
 						<a>
 							<div>

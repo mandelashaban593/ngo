@@ -14,7 +14,7 @@
 	<script>
 	$(document).ready(function(){
 		$("div#senders").click(function(){
-			var msg_id = $(this<"#msg_id").val();
+			var msg_id = $("#msg_id").val();
 			$("div#msg_content").load("getMsg.php?msg_id="+msg_id);
 		});
 	});
@@ -56,16 +56,19 @@
 						}
 						?>
 							<h4><?php echo $rs['name']; ?></h4>
-							<h5><?php echo $rs['email']; ?></h5>
-							<input type="hidden" value="<?php echo $rs['msg_id']; ?>" id="msg_id">
+							<a style="font-size: 12px" href="getMsg.php?msg_id=<?php echo $rs['msg_id'] ?>"><?php echo $rs['heading']; ?><h5><?php echo $rs['email']; ?></h5></a>
+
+
 							</div>
+							<br/>
 						<?php
 					}
 				?>
 				</div>
 				<div class="msg_content">
 				<h4 style="margin-top:0px;">Message</h4>
-				<div id="msg_content">Select a sender from List</div>
+				<div id="msg_content"><?php if($_GET['message']){echo $_GET['message']; } else{ ?> Select a sender from List <?php } ?></div>
+				
 				</div>
 			</div>
 		</div>

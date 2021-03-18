@@ -47,7 +47,7 @@
 			?>
 				<div>
 					<h2><a href="news.php"><?php echo $rs['heading']; ?></a></h2>
-					<span class="date">Sep 12, 2016</span> <a href="news.php" class="figure"><img src="<?php echo $rs['image'] ?>" alt="Image" height="180px" width="180px"></a>
+					<span class="date"><?php echo $rs['date']; ?></span> <a href="news.php" class="figure"><img src="<?php echo $rs['image'] ?>" alt="Image" height="180px" width="180px"></a>
 					<p>
 						<?php echo $rs['description']; ?>
 					</p>
@@ -59,8 +59,9 @@
 			?>
 				<ul style="display:inline;">
 					<li style="overflow:scroll">
-						<h2><a href="news.php"><?php echo $rs['heading']; ?></a></h2>
-						<span class="date">Sep 12, 2016</span>
+						<h2><a href="news_details.php?news_id=<?php echo $rs['news_id'] ?>"><?php echo $rs['heading']; ?></a></h2>
+
+						<span class="date"><?php echo $rs['date']; ?></span>
 						<p>
 							<?php echo $rs['description']; ?>
 						</p>
@@ -76,21 +77,23 @@
 				<div>
 					<h2>Recent Post</h2>
 					<ul>
+						<?php
+						$sql = "SELECT * FROM news ORDER BY date DESC Limit 6";
+						$result = mysqli_query($con,$sql);
+						
+						while($rs = mysqli_fetch_array($result)){
+						?>
+							
 						<li>
-							<a href="news.php">Hospitals are now Joining with us and docots will help us for good health care.</a>
+					
+							<a href="news_details.php?news_id=<?php echo $rs['news_id'] ?>" ><?php echo $rs['heading']; ?></a>
+
 						</li>
-						<li>
-							<a href="news.php">"Hope" is just joined with us which is for childrens.</a>
-						</li>
-						<li>
-							<a href="news.php">Elders get there requirement full-filled by donors.</a>
-						</li>
-						<li>
-							<a href="news.php">Childrens are now happy when they get toys, clothes and foodpackets from donors.</a>
-						</li>
-						<li>
-							<a href="news.php">"NaiSoch" and "Savera" two new founadtions are joined with us.</a>
-						</li>
+						<?php
+								
+							}
+						?>
+						
 					</ul>
 				</div>
 			</div>
